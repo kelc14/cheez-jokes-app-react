@@ -12,10 +12,11 @@ const JokeList = ({ numJokesToGet }) => {
   // only get jokes the first time:
   useEffect(() => getJokes, []);
 
-  // jokes get sorted on every render:
+  // jokes get sorted on every render as votes change:
   let sortedJokes = [...jokes].sort((a, b) => b.votes - a.votes);
 
-  // change vote in current state of jokes object:
+  // change vote in current state of jokes object
+  // function passed to <Joke/> as prop
   const vote = (id, delta) => {
     setJokes(() => {
       const newJokes = jokes.map((j) =>
